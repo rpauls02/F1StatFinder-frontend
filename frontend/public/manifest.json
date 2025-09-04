@@ -1,25 +1,25 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "F1StatFinder",
+  "name": "F1StatFinder",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "logo.png",
+      "sizes": "371x46",
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "discord-white.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "528x400"
     },
     {
-      "src": "logo512.png",
+      "src": "x-white.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "2400x2453"
     }
   ],
-  "start_url": ".",
+  "start_url": "f1statfinder/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#9797ff",
+  "background_color": "#1c1b22"
 }
