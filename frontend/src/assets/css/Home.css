@@ -1,0 +1,396 @@
+.content {
+  display: flex;
+  margin: 0 auto;
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  padding: 20px 0;
+}
+
+#next-race-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #2a292f;
+  border-radius: 16px;
+  border: 1px solid rgba(151, 151, 255, 0.3);
+  width: 1400px;
+}
+
+#next-race-container .title-container {
+  display: flex;
+  background-color: rgba(151, 151, 255, 0.3);
+  width: 100%;
+  justify-content: space-between;
+  border-radius: 16px 16px 0 0;
+}
+
+#next-race-container .title-container .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 16px;
+}
+
+#next-race-container .title-container .country-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 22px;
+  padding-right: 16px;
+}
+
+.flag-rect {
+  width: 40px;
+  height: 28px;
+  flex-shrink: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.flag-rect img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#next-race-card {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+}
+
+#next-race-card .vr {
+  width: 2px;
+  height: 100px;
+  background-color: #ccc;
+}
+
+#next-race-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+
+#next-race-info p {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  gap: 5px;
+}
+
+#next-race-countdown-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.countdown-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(151, 151, 255, 0.8);
+}
+
+.countdown-label {
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+.columns {
+  display: flex;
+  gap: 30px;
+  max-width: 1400px;
+}
+
+#left-col,
+#right-col {
+  background-color: #1c1b22;
+  border-radius: 16px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(151, 151, 255, 0.3);
+}
+
+#driver-standings,
+#constructor-standings {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+#driver-standings .title-container,
+#constructor-standings .title-container {
+  display: flex;
+  background-color: rgba(151, 151, 255, 0.3);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px 16px 0 0;
+}
+
+#driver-standings ul,
+#constructor-standings ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 20px;
+  margin: 0;
+  gap: 10px;
+}
+
+#driver-row,
+#constructor-row {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(151, 151, 255, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 0;
+  align-items: flex-start;
+  width: 600px;
+}
+
+#driver-row hr,
+#constructor-row hr {
+  border: none;
+  height: 1px;
+  border-top: 1px solid rgba(151, 151, 255, 0.3);
+  width: 100%;
+}
+
+#driver-summary,
+#constructor-summary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#driver-summary .position,
+#constructor-summary .position {
+  padding-right: 4px;
+  font-weight: bold;
+}
+
+#driver-info,
+#constructor-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#driver-info .position,
+#constructor-info .position {
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+}
+
+#driver-info .flag,
+#constructor-info .flag {
+  width: 40px;
+  height: 28px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+#driver-info div,
+#constructor-info div {
+  display: flex;
+  flex-direction: column;
+}
+
+.points {
+  margin-left: auto;
+  font-weight: bold;
+  color: #fff;
+}
+
+#driver-footer,
+#constructor-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#driver-footer span,
+#constructor-footer span {
+  margin-bottom: 6px;
+}
+
+#driver-arrow,
+#constructor-arrow {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#driver-details,
+#constructor-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#driver-details-col,
+#constructor-details-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#driver-details-col .number,
+#constructor-details-col .number{
+  font-size: 22px;
+}
+
+#driver-details-col .label,
+#constructor-details-col .label{
+  font-weight: bold;
+}
+
+#driver-details.expanded {
+  max-height: 200px;
+  opacity: 1;
+}
+
+/* ================================================= 
+
+#stats,
+#insights {
+  width: 1400px;
+  background-color: #2a292f;
+  border-radius: 10px;
+  padding: 15px;
+  flex: 1;
+}
+
+#stats h1,
+#insights h1,
+#prev-race h1,
+#next-race h1 {
+  color: #7777ff;
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+
+.welcome-message {
+  margin: 0 0 0 5px;
+}
+
+#features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  margin: 0 10px;
+  background-color: #1c1b22;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#seasons,
+#tracks,
+#constructors,
+#drivers {
+  background-color: #2a292f;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#seasons h2,
+#tracks h2,
+#constructors h2,
+#drivers h2 {
+  color: #7777ff;
+  margin: 7px 0 7px 5px;
+}
+
+#seasons hr,
+#tracks hr,
+#constructors hr,
+#drivers hr {
+  margin: 0;
+  padding: 0;
+}
+
+.grid-content {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-content p {
+  margin: 10px;
+  padding: 0;
+}
+
+.standings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #1c1b22;
+  color: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.standings-table th,
+.standings-table td {
+  border: 1px solid #444;
+  padding: 8px;
+}
+
+.standings-table th {
+  background-color: #2a292f;
+  color: #7777ff;
+}
+
+.left-align {
+  text-align: left;
+}
+
+.right-align {
+  text-align: right;
+}
+
+/* Optional: alternate row shading
+.standings-table tbody tr:nth-child(odd) {
+  background-color: #25242a;
+}
+
+.standings-table tbody tr:nth-child(even) {
+  background-color: #1c1b22;
+}
+
+*/
