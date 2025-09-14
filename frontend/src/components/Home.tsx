@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header.tsx';
-import Footer from '../components/Footer.tsx';
+import { Link } from "react-router";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../assets/css/Home.css';
 import {
     fetchDriverStandings,
@@ -17,7 +18,7 @@ import {
     ConstructorStanding,
     NextEventCountdown,
     NextEvent
-} from '../assets/ts/f1.ts';
+} from '../assets/ts/home';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
@@ -137,6 +138,7 @@ const Home: React.FC = () => {
     return (
         <>
             <Header />
+            
             <main className='content'>
 
                 <div id="next-race-container">
@@ -219,7 +221,7 @@ const Home: React.FC = () => {
                                     <p>2025 Driver Standings</p>
                                 </div>
                             </div>
-                            <ul>
+                            <ul id="standings-table">
                                 {driverStandings.length > 0 ? (
                                     driverStandings.slice(0, 3).map((driver) => {
                                         const isExpanded = expandedDriver === driver.position;
@@ -278,7 +280,7 @@ const Home: React.FC = () => {
                                                                         <span className="label">Wins</span>
                                                                     </div>
                                                                     <div id="driver-details-col">
-                                                                        <span className="number">{stats.dnf}</span>
+                                                                        <span className="number">{stats.dnfs}</span>
                                                                         <span className="label">DNFs</span>
                                                                     </div>
                                                                 </>
@@ -293,6 +295,9 @@ const Home: React.FC = () => {
                                     <li>No standings available.</li>
                                 )}
                             </ul>
+                            {driverStandings.length > 3 && (
+                                <Link to="/seasons">See more</Link>
+                            )}
                         </div>
                     </div>
 
@@ -303,9 +308,9 @@ const Home: React.FC = () => {
                                     <p>2025 Constructor Standings</p>
                                 </div>
                             </div>
-                            <ul>
+                            <ul id="standings-table">
                                 {constructorStandings.length > 0 ? (
-                                    constructorStandings.slice(0, 3).map((constructor) =>{
+                                    constructorStandings.slice(0, 3).map((constructor) => {
                                         const isExpanded = expandedConstructor === constructor.position;
                                         return (
                                             <li key={constructor.position} id="constructor-row">
@@ -388,150 +393,12 @@ const Home: React.FC = () => {
                                     <li>No standings available.</li>
                                 )}
                             </ul>
+                            {constructorStandings.length > 3 && (
+                                <Link to="/seasons">See more</Link>
+                            )}
                         </div>
                     </div>
-
-
-                    {/*<div id='stats'>
-                        <h1>Explore Formula One statistics</h1>
-                        <hr />
-                        <div className='welcome-message'>
-                            <p>Dive into a vast range of statistics from any era of Formula One.</p>
-                        </div>
-
-
-
-                        <div id='features-grid'>
-                            <div id='seasons'>
-                                <h2>Seasons</h2>
-                                <hr />
-                                <div className='grid-content'>
-                                    <p>Explore different seasons </p>
-                                    {champions.length > 0 && (
-                                        <table className="standings-table">
-                                            <thead>
-                                                <tr>
-                                                    <th className="left-align">Year</th>
-                                                    <th className="left-align">WCC Winner</th>
-                                                    <th className="left-align">WDC Champion</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {champions.map((c) => (
-                                                    <tr key={c.year}>
-                                                        <td className="left-align">{c.year}</td>
-                                                        <td className="left-align">{c.wcc}</td>
-                                                        <td className="left-align">{c.wdc}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                    )}
-                                </div>
-                            </div>
-
-                            <div id='tracks'>
-                                <h2>Tracks</h2>
-                                <hr />
-                                <div className='grid-content'>
-                                    <p>Discover new tracks</p>
-                                </div>
-                            </div>
-
-                            <div id='constructors'>
-                                <h2>Constructors</h2>
-                                <hr />
-                                <div className='grid-content'>
-                                    <p>Discover the history of new and never heard teams</p>
-                                    <p>Compare the development of constructors</p>
-                                    <p>Feature 3</p>
-                                    <table className="standings-table">
-                                        <thead>
-                                            <tr>
-                                                <td colSpan={4} className="table-disclaimer" style={{ textAlign: 'center' }}>
-                                                    <small>{new Date().getFullYear()} standings</small>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th className="left-align">#</th>
-                                                <th className="left-align">Constructor</th>
-                                                <th className="right-align">Points</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {constructorStandings.length > 0 ? (
-                                                constructorStandings.slice(0, 3).map((constructor) => (
-                                                    <tr key={constructor.position}>
-                                                        <td className="left-align">{constructor.position}</td>
-                                                        <td >{constructor.name}</td>
-                                                        <td className="right-align">{constructor.points}</td>
-                                                    </tr>
-                                                ))
-                                            ) : (
-                                                <tr>
-                                                    <td colSpan={4} style={{ textAlign: 'center' }}>
-                                                        No standings available
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <div id='drivers'>
-                                <h2>Drivers</h2>
-                                <hr />
-                                <div className='grid-content'>
-                                    <p>Pit your favourite drivers against each other</p>
-                                    <p>Feature 2</p>
-                                    <p>Feature 3</p>
-                                    <table className="standings-table">
-                                        <thead>
-                                            <tr>
-                                                <td colSpan={4} className="table-disclaimer" style={{ textAlign: 'center' }}>
-                                                    <small>{new Date().getFullYear()} standings</small>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th className="left-align">#</th>
-                                                <th className="left-align">Driver</th>
-                                                <th className="left-align">Constructor</th>
-                                                <th className="right-align">Points</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {driverStandings.length > 0 ? (
-                                                driverStandings.slice(0, 3).map((driver) => (
-                                                    <tr key={driver.position}>
-                                                        <td className="left-align">{driver.position}</td>
-                                                        <td className="left-align">{driver.driver}</td>
-                                                        <td>{driver.constructor}</td>
-                                                        <td className="right-align">{driver.points}</td>
-                                                    </tr>
-                                                ))
-                                            ) : (
-                                                <tr>
-                                                    <td colSpan={4} style={{ textAlign: 'center' }}>
-                                                        Standings not available
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>*/}
                 </div>
-
-                {/*<div id="insights">
-                        <h1>Create unique insights</h1>
-                        <hr />
-                        <div className='welcome-message'>
-                            <p>Create and visualise your own unique insights with StatSim.</p>
-                        </div>
-                    </div>
-                </div>*/}
             </main>
 
             <Footer />

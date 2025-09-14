@@ -1,5 +1,6 @@
 .content {
   display: flex;
+  flex-direction: column;
   margin: 0 auto;
   gap: 20px;
   width: 100%;
@@ -13,7 +14,7 @@
   background-color: #2a292f;
   border-radius: 16px;
   border: 1px solid rgba(151, 151, 255, 0.3);
-  width: 1400px;
+  width: 100%
 }
 
 #next-race-container .title-container {
@@ -118,17 +119,19 @@
 
 .columns {
   display: flex;
-  gap: 30px;
-  max-width: 1400px;
+  gap: 20px;
+  width: 100%;
 }
 
 #left-col,
 #right-col {
-  background-color: #1c1b22;
+  background-color: #2a292f;
   border-radius: 16px;
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(151, 151, 255, 0.3);
+  flex: 1 1 0;
+  padding: 0;
 }
 
 #driver-standings,
@@ -138,6 +141,10 @@
   border-radius: 16px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 #driver-standings .title-container,
@@ -150,26 +157,29 @@
   border-radius: 16px 16px 0 0;
 }
 
-#driver-standings ul,
-#constructor-standings ul {
+#driver-standings #standings-table,
+#constructor-standings #standings-table {
   display: flex;
   flex-direction: column;
   list-style-type: none;
   padding: 20px;
   margin: 0;
   gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-#driver-row,
-#constructor-row {
+#driver-standings #standings-table #driver-row,
+#constructor-standings #standings-table #constructor-row {
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(151, 151, 255, 0.3);
   border-radius: 16px;
-  padding: 20px;
+  padding: 15px;
   margin: 0;
   align-items: flex-start;
-  width: 600px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #driver-row hr,
@@ -282,115 +292,12 @@
   opacity: 1;
 }
 
-/* ================================================= 
-
-#stats,
-#insights {
-  width: 1400px;
-  background-color: #2a292f;
-  border-radius: 10px;
-  padding: 15px;
-  flex: 1;
+#driver-standings a,
+#constructor-standings a{
+  text-decoration: none;
+  font-weight: bold;
+  color: rgba(151, 151, 255, 0.8);
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+  cursor: pointer;
 }
 
-#stats h1,
-#insights h1,
-#prev-race h1,
-#next-race h1 {
-  color: #7777ff;
-  margin: 0 0 0 5px;
-  padding: 0;
-}
-
-.welcome-message {
-  margin: 0 0 0 5px;
-}
-
-#features-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 10px;
-  margin: 0 10px;
-  background-color: #1c1b22;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-#seasons,
-#tracks,
-#constructors,
-#drivers {
-  background-color: #2a292f;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-#seasons h2,
-#tracks h2,
-#constructors h2,
-#drivers h2 {
-  color: #7777ff;
-  margin: 7px 0 7px 5px;
-}
-
-#seasons hr,
-#tracks hr,
-#constructors hr,
-#drivers hr {
-  margin: 0;
-  padding: 0;
-}
-
-.grid-content {
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 0 5px;
-  align-items: center;
-  justify-content: center;
-}
-
-.grid-content p {
-  margin: 10px;
-  padding: 0;
-}
-
-.standings-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  background-color: #1c1b22;
-  color: #ffffff;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.standings-table th,
-.standings-table td {
-  border: 1px solid #444;
-  padding: 8px;
-}
-
-.standings-table th {
-  background-color: #2a292f;
-  color: #7777ff;
-}
-
-.left-align {
-  text-align: left;
-}
-
-.right-align {
-  text-align: right;
-}
-
-/* Optional: alternate row shading
-.standings-table tbody tr:nth-child(odd) {
-  background-color: #25242a;
-}
-
-.standings-table tbody tr:nth-child(even) {
-  background-color: #1c1b22;
-}
-
-*/
