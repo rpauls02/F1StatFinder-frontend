@@ -19,12 +19,6 @@ const Header: React.FC = () => {
                 />
                 <ul className="navbar-main">
                     <li
-                        className={isActive("/") ? "active" : ""}
-                        onClick={() => navigate("/")}
-                    >
-                        Home
-                    </li>
-                    <li
                         className={isActive("/seasons") ? "active" : ""}
                         onClick={() => navigate("/seasons")}
                     >
