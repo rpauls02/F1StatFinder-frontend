@@ -73,19 +73,15 @@
 
 #next-race-info {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+  flex-direction: column;
 }
-
 
 #next-race-info p {
   display: flex;
   flex-direction: column;
   margin: 0;
   padding: 0;
-  gap: 5px;
+  gap: 3px;
 }
 
 #next-race-countdown-container {
@@ -117,21 +113,11 @@
   text-align: center;
 }
 
-.columns {
-  display: flex;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 100%;
-}
-
-#left-col,
-#right-col {
-  background-color: #2a292f;
-  border-radius: 16px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(151, 151, 255, 0.3);
-  flex: 1 1 0;
-  padding: 0;
 }
 
 #driver-standings,
@@ -144,7 +130,9 @@
   margin-bottom: 16px;
   width: 100%;
   box-sizing: border-box;
-  padding: 0;
+  padding-bottom: 16px;
+  background-color: #2a292f;
+  border: 1px solid rgba(151, 151, 255, 0.3);
 }
 
 #driver-standings .title-container,
@@ -278,12 +266,12 @@
 }
 
 #driver-details-col .number,
-#constructor-details-col .number{
+#constructor-details-col .number {
   font-size: 22px;
 }
 
 #driver-details-col .label,
-#constructor-details-col .label{
+#constructor-details-col .label {
   font-weight: bold;
 }
 
@@ -293,11 +281,10 @@
 }
 
 #driver-standings a,
-#constructor-standings a{
+#constructor-standings a {
   text-decoration: none;
   font-weight: bold;
   color: rgba(151, 151, 255, 0.8);
   transition: color 0.2s ease, text-decoration 0.2s ease;
   cursor: pointer;
 }
-

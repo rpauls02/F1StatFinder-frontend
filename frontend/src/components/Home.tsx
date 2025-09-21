@@ -138,7 +138,7 @@ const Home: React.FC = () => {
     return (
         <>
             <Header />
-            
+
             <main className='content'>
 
                 <div id="next-race-container">
@@ -162,24 +162,9 @@ const Home: React.FC = () => {
                         {nextEvent ? (
                             <>
                                 <div id="next-race-info">
-                                    <div>
-                                        {nextEvent.eventName} @ {nextEvent.location}
-                                        {nextEvent.sessions
-                                            .filter((session) => session.name.toLowerCase() === "race")
-                                            .map((raceSession, index) => (
-                                                <p key={index}>
-                                                    {raceSession.date} {raceSession.time}
-                                                </p>
-                                            ))
-                                        }
-                                        {nextEvent.sessions.some(
-                                            (session) => session.name.toLowerCase() === "sprint"
-                                        ) ? (
-                                            <p>Sprint Weekend</p>
-                                        ) : (
-                                            <p>Standard Weekend</p>
-                                        )}
-                                    </div>
+                                    <p>{nextEvent.location}</p>
+                                    <p>{nextEvent.raceDate} {nextEvent.raceTime}</p>
+                                    <p>{nextEvent.eventType}</p>
                                 </div>
 
 
@@ -213,190 +198,190 @@ const Home: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="columns">
-                    <div id="left-col">
-                        <div id="driver-standings">
-                            <div className="title-container">
-                                <div className="title">
-                                    <p>2025 Driver Standings</p>
-                                </div>
+                <div className="grid">
+                    <div id="driver-standings">
+                        <div className="title-container">
+                            <div className="title">
+                                <p>2025 Driver Standings</p>
                             </div>
-                            <ul id="standings-table">
-                                {driverStandings.length > 0 ? (
-                                    driverStandings.slice(0, 3).map((driver) => {
-                                        const isExpanded = expandedDriver === driver.position;
-                                        return (
-                                            <li key={driver.position} id="driver-row">
-                                                <div id="driver-summary">
-                                                    <div id="driver-info">
-                                                        <strong className="position">{driver.position}</strong>
-                                                        <img
-                                                            className="flag"
-                                                            src={`https://flagcdn.com/w320/${driver.nationality}.png`}
-                                                            alt={`${driver.nationality} flag`}
-                                                        />
-                                                        <div>
-                                                            {driver.name}
-                                                            <small>{driver.constructor}</small>
-                                                        </div>
-                                                    </div>
-                                                    <span className="points">{driver.points} pts</span>
-                                                </div>
-
-                                                <hr />
-
-                                                <div id="driver-footer">
-                                                    <span className="more-info"><small>More stats</small></span>
-                                                    <div
-                                                        className="driver-arrow"
-                                                        onClick={() =>
-                                                            setExpandedDriver(
-                                                                expandedDriver === driver.position ? null : driver.position
-                                                            )
-                                                        }
-                                                    >
-                                                        {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                                    </div>
-                                                </div>
-
-                                                {isExpanded && driverStats && (
-                                                    <div id="driver-details"
-                                                        className={isExpanded ? "expanded" : "collapsed"}>
-                                                        {(() => {
-                                                            const stats = driverStats.find(ds => ds.id === driver.id);
-                                                            if (!stats) return null;
-                                                            return (
-                                                                <>
-                                                                    <div id="driver-details-col">
-                                                                        <span className="number">{stats.poles}</span>
-                                                                        <span className="label">Poles</span>
-                                                                    </div>
-                                                                    <div id="driver-details-col">
-                                                                        <span className="number">{stats.podiums}</span>
-                                                                        <span className="label">Podiums</span>
-                                                                    </div>
-                                                                    <div id="driver-details-col">
-                                                                        <span className="number">{stats.wins}</span>
-                                                                        <span className="label">Wins</span>
-                                                                    </div>
-                                                                    <div id="driver-details-col">
-                                                                        <span className="number">{stats.dnfs}</span>
-                                                                        <span className="label">DNFs</span>
-                                                                    </div>
-                                                                </>
-                                                            );
-                                                        })()}
-                                                    </div>
-                                                )}
-                                            </li>
-                                        );
-                                    })
-                                ) : (
-                                    <li>No standings available.</li>
-                                )}
-                            </ul>
-                            {driverStandings.length > 3 && (
-                                <Link to="/seasons">See more</Link>
-                            )}
                         </div>
+
+                        <ul id="standings-table">
+                            {driverStandings.length > 0 ? (
+                                driverStandings.slice(0, 3).map((driver) => {
+                                    const isExpanded = expandedDriver === driver.position;
+                                    return (
+                                        <li key={driver.position} id="driver-row">
+                                            <div id="driver-summary">
+                                                <div id="driver-info">
+                                                    <strong className="position">{driver.position}</strong>
+                                                    <img
+                                                        className="flag"
+                                                        src={`https://flagcdn.com/w320/${driver.nationality}.png`}
+                                                        alt={`${driver.nationality} flag`}
+                                                    />
+                                                    <div>
+                                                        {driver.name}
+                                                        <small>{driver.constructor}</small>
+                                                    </div>
+                                                </div>
+                                                <span className="points">{driver.points} pts</span>
+                                            </div>
+
+                                            <hr />
+
+                                            <div id="driver-footer">
+                                                <span className="more-info"><small>More stats</small></span>
+                                                <div
+                                                    className="driver-arrow"
+                                                    onClick={() =>
+                                                        setExpandedDriver(
+                                                            expandedDriver === driver.position ? null : driver.position
+                                                        )
+                                                    }
+                                                >
+                                                    {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                                </div>
+                                            </div>
+
+                                            {isExpanded && driverStats && (
+                                                <div id="driver-details"
+                                                    className={isExpanded ? "expanded" : "collapsed"}>
+                                                    {(() => {
+                                                        const stats = driverStats.find(ds => ds.id === driver.id);
+                                                        if (!stats) return null;
+                                                        return (
+                                                            <>
+                                                                <div id="driver-details-col">
+                                                                    <span className="number">{stats.poles}</span>
+                                                                    <span className="label">Poles</span>
+                                                                </div>
+                                                                <div id="driver-details-col">
+                                                                    <span className="number">{stats.podiums}</span>
+                                                                    <span className="label">Podiums</span>
+                                                                </div>
+                                                                <div id="driver-details-col">
+                                                                    <span className="number">{stats.wins}</span>
+                                                                    <span className="label">Wins</span>
+                                                                </div>
+                                                                <div id="driver-details-col">
+                                                                    <span className="number">{stats.dnfs}</span>
+                                                                    <span className="label">DNFs</span>
+                                                                </div>
+                                                            </>
+                                                        );
+                                                    })()}
+                                                </div>
+                                            )}
+                                        </li>
+                                    );
+                                })
+                            ) : (
+                                <li>No standings available.</li>
+                            )}
+                        </ul>
+
+                        {driverStandings.length > 3 && (
+                            <Link to="/seasons">See more</Link>
+                        )}
                     </div>
 
-                    <div id="right-col">
-                        <div id="constructor-standings">
-                            <div className="title-container">
-                                <div className="title">
-                                    <p>2025 Constructor Standings</p>
-                                </div>
+                    <div id="constructor-standings">
+                        <div className="title-container">
+                            <div className="title">
+                                <p>2025 Constructor Standings</p>
                             </div>
-                            <ul id="standings-table">
-                                {constructorStandings.length > 0 ? (
-                                    constructorStandings.slice(0, 3).map((constructor) => {
-                                        const isExpanded = expandedConstructor === constructor.position;
-                                        return (
-                                            <li key={constructor.position} id="constructor-row">
-                                                <div id="constructor-summary">
-                                                    <div id="constructor-info">
-                                                        <strong className="position">{constructor.position}</strong>
-                                                        <img
-                                                            className="flag"
-                                                            src={`https://flagcdn.com/w320/${constructor.nationality}.png`}
-                                                            alt={`${constructor.nationality} flag`}
-                                                        />
-                                                        <div>
-                                                            {constructor.name}
-                                                            <small>
-                                                                {error ? (
-                                                                    "Error loading drivers"
-                                                                ) : teamDrivers.length > 0 ? (
-                                                                    (() => {
-                                                                        const drivers = teamDrivers.find(t => t.id === constructor.id)?.drivers || [];
-                                                                        if (drivers.length >= 2) {
-                                                                            return `${drivers[0]} | ${drivers[1]}`;
-                                                                        } else if (drivers.length === 1) {
-                                                                            return `${drivers[0]} | Driver 2 TBD`;
-                                                                        }
-                                                                        return `No drivers found for ${constructor.name}`;
-                                                                    })()
-                                                                ) : (
-                                                                    "Loading drivers..."
-                                                                )}
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                    <span className="points">{constructor.points} pts</span>
-                                                </div>
-
-                                                <hr />
-
-                                                <div id="constructor-footer">
-                                                    <span className="more-info"><small>More stats</small></span>
-                                                    <div
-                                                        className="constructor-arrow"
-                                                        onClick={() =>
-                                                            setExpandedConstructor(
-                                                                expandedConstructor === constructor.position ? null : constructor.position
-                                                            )
-                                                        }
-                                                    >
-                                                        {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                                    </div>
-                                                </div>
-
-                                                {isExpanded && constructorStats && (
-                                                    <div id="constructor-details">
-                                                        {(() => {
-                                                            const stats = constructorStats.find(cs => cs.id === constructor.id);
-                                                            if (!stats) return null;
-                                                            return (
-                                                                <>
-                                                                    <div id="constructor-details-col">
-                                                                        <span className="number">{stats.poles}</span>
-                                                                        <span className="label">Poles</span>
-                                                                    </div>
-                                                                    <div id="constructor-details-col">
-                                                                        <span className="number">{stats.podiums}</span>
-                                                                        <span className="label">Podiums</span>
-                                                                    </div>
-                                                                    <div id="constructor-details-col">
-                                                                        <span className="number">{stats.wins}</span>
-                                                                        <span className="label">Wins</span>
-                                                                    </div>
-                                                                </>
-                                                            );
-                                                        })()}
-                                                    </div>
-                                                )}
-                                            </li>
-                                        );
-                                    })
-                                ) : (
-                                    <li>No standings available.</li>
-                                )}
-                            </ul>
-                            {constructorStandings.length > 3 && (
-                                <Link to="/seasons">See more</Link>
-                            )}
                         </div>
+                        
+                        <ul id="standings-table">
+                            {constructorStandings.length > 0 ? (
+                                constructorStandings.slice(0, 3).map((constructor) => {
+                                    const isExpanded = expandedConstructor === constructor.position;
+                                    return (
+                                        <li key={constructor.position} id="constructor-row">
+                                            <div id="constructor-summary">
+                                                <div id="constructor-info">
+                                                    <strong className="position">{constructor.position}</strong>
+                                                    <img
+                                                        className="flag"
+                                                        src={`https://flagcdn.com/w320/${constructor.nationality}.png`}
+                                                        alt={`${constructor.nationality} flag`}
+                                                    />
+                                                    <div>
+                                                        {constructor.name}
+                                                        <small>
+                                                            {error ? (
+                                                                "Error loading drivers"
+                                                            ) : teamDrivers.length > 0 ? (
+                                                                (() => {
+                                                                    const drivers = teamDrivers.find(t => t.id === constructor.id)?.drivers || [];
+                                                                    if (drivers.length >= 2) {
+                                                                        return `${drivers[0]} | ${drivers[1]}`;
+                                                                    } else if (drivers.length === 1) {
+                                                                        return `${drivers[0]} | Driver 2 TBD`;
+                                                                    }
+                                                                    return `No drivers found for ${constructor.name}`;
+                                                                })()
+                                                            ) : (
+                                                                "Loading drivers..."
+                                                            )}
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <span className="points">{constructor.points} pts</span>
+                                            </div>
+
+                                            <hr />
+
+                                            <div id="constructor-footer">
+                                                <span className="more-info"><small>More stats</small></span>
+                                                <div
+                                                    className="constructor-arrow"
+                                                    onClick={() =>
+                                                        setExpandedConstructor(
+                                                            expandedConstructor === constructor.position ? null : constructor.position
+                                                        )
+                                                    }
+                                                >
+                                                    {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                                </div>
+                                            </div>
+
+                                            {isExpanded && constructorStats && (
+                                                <div id="constructor-details">
+                                                    {(() => {
+                                                        const stats = constructorStats.find(cs => cs.id === constructor.id);
+                                                        if (!stats) return null;
+                                                        return (
+                                                            <>
+                                                                <div id="constructor-details-col">
+                                                                    <span className="number">{stats.poles}</span>
+                                                                    <span className="label">Poles</span>
+                                                                </div>
+                                                                <div id="constructor-details-col">
+                                                                    <span className="number">{stats.podiums}</span>
+                                                                    <span className="label">Podiums</span>
+                                                                </div>
+                                                                <div id="constructor-details-col">
+                                                                    <span className="number">{stats.wins}</span>
+                                                                    <span className="label">Wins</span>
+                                                                </div>
+                                                            </>
+                                                        );
+                                                    })()}
+                                                </div>
+                                            )}
+                                        </li>
+                                    );
+                                })
+                            ) : (
+                                <li>No standings available.</li>
+                            )}
+
+                        </ul>
+                        {constructorStandings.length > 3 && (
+                            <Link to="/seasons">See more</Link>
+                        )}
                     </div>
                 </div>
             </main>
